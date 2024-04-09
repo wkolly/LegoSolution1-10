@@ -27,6 +27,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredUniqueChars = 1;
 });
 
+builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
+
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
@@ -54,8 +56,8 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCookiePolicy();
 app.UseRouting();
+app.UseCookiePolicy();
 
 app.UseAuthorization();
 
