@@ -16,6 +16,12 @@ builder.Services.AddDbContext<LegoDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings=legoConnection"]);
 });
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -37,6 +43,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCookiePolicy();
 app.UseRouting();
 
 app.UseAuthorization();
