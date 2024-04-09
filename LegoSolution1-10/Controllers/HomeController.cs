@@ -6,16 +6,19 @@ namespace LegoSolution1_10.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    
+    private readonly LegoDatabaseContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(LegoDatabaseContext context)
     {
-        _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+        IQueryable<Product> products = _context.Products; // Adjust this line based on how you access your products
+        return View(products);
+        
     }
 
     public IActionResult Privacy()
