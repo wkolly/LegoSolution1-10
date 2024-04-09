@@ -9,8 +9,8 @@
     @foreach (Product p in Model)
     {
         <ul>
-            <li>@p.ImgLink</li>
+            <li><img src="@p.ImgLink" alt="@p.Name" style="width:100px; height:auto;"></li>
             <li>@p.Name</li>
-            <li>'$' + @p.Price</li>
+            <li>$@p.Price</li>
         </ul>
     }

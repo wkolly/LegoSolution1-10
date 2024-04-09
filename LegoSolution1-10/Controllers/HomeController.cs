@@ -7,17 +7,18 @@ namespace LegoSolution1_10.Controllers;
 public class HomeController : Controller
 {
     
-    private readonly LegoDatabaseContext _context;
-
-    public HomeController(LegoDatabaseContext context)
+    private readonly ILegoRepository _repo;
+        
+    public HomeController(ILegoRepository temp)
     {
-        _context = context;
+        _repo = temp;
     }
 
     public IActionResult Index()
     {
-        IQueryable<Product> products = _context.Products; // Adjust this line based on how you access your products
-        return View(products);
+        var productData = _repo.Products;
+        //IQueryable<Product> products = _context.Products; // Adjust this line based on how you access your products
+        return View(productData);
         
     }
 

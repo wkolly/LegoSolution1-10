@@ -16,6 +16,8 @@ builder.Services.AddDbContext<LegoDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings=legoConnection"]);
 });
 
+builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
