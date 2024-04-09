@@ -16,6 +16,17 @@ builder.Services.AddDbContext<LegoDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings=legoConnection"]);
 });
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Default Password settings.
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 14;
+    options.Password.RequiredUniqueChars = 1;
+});
+
 builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -46,6 +57,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCookiePolicy();
 
 app.UseAuthorization();
 
