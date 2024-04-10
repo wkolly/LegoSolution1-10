@@ -59,6 +59,22 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseCookiePolicy();
 
+app.Use (async (ctx, next) =>
+{
+    string csp = "default-src 'self'; " +
+                 "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js 'unsafe-inline' https://apis.google.com; " +
+                 "script-src-elem 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js 'unsafe-inline' https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js; " +
+                 "connect-src 'self' 'unsafe-inline' ws://localhost:57798 http://localhost:57798 https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js ws://localhost:62719 http://localhost:62719 wss://localhost:44300; " +
+                 "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap; " +
+                 "font-src 'self' https://fonts.gstatic.com; " +
+                 "img-src 'self' data: https://m.media-amazon.com https://www.lego.com https://images.brickset.com https://www.brickeconomy.com;";
+    if (ctx.Request.IsHttps || app.Environment.IsDevelopment())
+    {
+        ctx.Response.Headers.Add("Content-Security-Policy", csp);
+    }
+
+    await next.Invoke();
+});
 app.UseAuthorization();
 
 app.MapControllerRoute(
