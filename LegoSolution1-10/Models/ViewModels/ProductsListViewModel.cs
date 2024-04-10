@@ -6,7 +6,7 @@ namespace LegoSolution1_10.Models.ViewModels;
         public IQueryable<Product> Products { get; set; }
 
         public PaginationInfo PaginationInfo { get; set; } = new PaginationInfo();
-    
+        public List<int> PageSizeOptions { get; set; }
     }
 
 
