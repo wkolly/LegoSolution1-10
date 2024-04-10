@@ -44,6 +44,21 @@
       <_ContentIncludedByDefault Remove="Views\Products\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Products\ProductDetails.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Shared\Components\ProductTypes\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CRUDUsers\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CRUDUsers\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CRUDUsers\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CRUDUsers\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CRUDUsers\Index.cshtml" />
     </ItemGroup>
 
 </Project>
