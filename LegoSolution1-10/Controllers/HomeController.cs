@@ -16,8 +16,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var productData = _repo.Products;
-        //IQueryable<Product> products = _context.Products; // Adjust this line based on how you access your products
+        var productData = _repo.Products
+            .OrderBy(x => x.Name)
+            .Take(6);
         return View(productData);
         
     }
@@ -25,6 +26,17 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    public IActionResult AboutUs()
+    {
+        return View();
+    }
+
+    public IActionResult Products()
+    {
+        var productData = _repo.Products;
+        return View(productData);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
