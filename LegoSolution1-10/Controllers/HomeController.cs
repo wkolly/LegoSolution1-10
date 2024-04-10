@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LegoSolution1_10.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LegoSolution1_10.Controllers;
 
@@ -32,7 +33,7 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    [Authorize(Roles="Admin")]
     public IActionResult Products()
     {
         var productData = _repo.Products;
