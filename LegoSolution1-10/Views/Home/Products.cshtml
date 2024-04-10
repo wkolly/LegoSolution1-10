@@ -45,23 +45,35 @@
             font-size: 1.2em;
             font-weight: bold;
         }
+        .clickable-card {
+                    cursor: pointer;
+                    text-decoration: none; /* Removes underline from links */
+                }
+        .clickable-card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Optional: Adds a larger shadow on hover for visual feedback */
+        }
     </style>
 </head>
 <body>
 <div class="container">
     @model IQueryable<Product>
-<div class="container">
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (Product p in Model)
-    {
-        <div class="card">
-            <img src="@p.ImgLink" alt="@p.Name" />
-            <h3>@p.Name</h3>
-            <p class="price">$@p.Price</p>
-            <p>Product details go here, such as color, dimensions, it's so fun.</p>
-        </div>
-    }
-      </div>
+        @foreach (Product p in Model)
+        {
+            <div class="col mb-4">
+                <a class="clickable-card" href="@Url.Action("ProductDetails", "Home", new { id = p.ProductId })">
+                    <div class="card h-100">
+                        <img src="@p.ImgLink" class="card-img-top" alt="@p.Name" />
+                        <div class="card-body">
+                            <h3 class="card-title">@p.Name</h3>
+                            <p class="card-text price">$@p.Price</p>
+                            <p class="card-text">Product details go here, such as color, dimensions, it's so fun.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
     </div>
 </div>
 </body>
