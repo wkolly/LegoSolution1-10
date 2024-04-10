@@ -41,6 +41,9 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcode\davidshimjs-qrcodejs-04f46c6\qrcode.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcode\davidshimjs-qrcodejs-04f46c6\qrcode.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcode\davidshimjs-qrcodejs-04f46c6\README.md" />
+      <_ContentIncludedByDefault Remove="Views\Products\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Products\ProductDetails.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\ProductTypes\Default.cshtml" />
     </ItemGroup>
 
 </Project>
