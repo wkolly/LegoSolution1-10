@@ -10,7 +10,7 @@
     @foreach (Product p in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
+            <div class="breadcrumb h-100">
                 <a href="@Url.Action("ProductDetails", "Home", new { id = p.ProductId })">
                     <div class="card-body text-center d-flex flex-column justify-content-center">
                         <img src="@p.ImgLink" alt="@p.Name" class="card-img-top" style="width:100%; height:auto; margin-bottom: 10px">

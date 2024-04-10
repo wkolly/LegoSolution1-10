@@ -1,6 +1,9 @@
 @model LegoSolution1_10.Models.Product
 
-
-
-<h2>@Model.Name</h2>
-<!-- Display product details such as image, description, price, etc. -->
+<div class="breadcrumb h-100">
+    <img src="@Model.ImgLink" alt="@Model.Name" class="card-img-top" style="width:500px; height:auto; margin-bottom: 10px; margin-right:50px">
+    <br/>
+    <h2>@Model.Name</h2>
+    <br/>
+    <h5 style="font-weight: bold">$@Model.Price</h5>
+</div>

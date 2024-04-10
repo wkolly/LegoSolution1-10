@@ -56,10 +56,12 @@ public class HomeController : Controller
     }
     
 
-    public IActionResult ProductDetails()
+    public IActionResult ProductDetails(string id)
     {
-        return View();
+        var product = _repo.Products.FirstOrDefault(p => p.ProductId == id);
+        return View("ProductDetails", product);
     }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
