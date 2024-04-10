@@ -2,79 +2,21 @@
     ViewData["Title"] = "Products";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Products</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-around; /* This will add space around your items */
-                    gap: 20px; /* This adds space between your flex items */
-                    padding: 10px;
-                }
-        .card {
-            border: solid 1px #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px; /* Space at the bottom of each card */
-            width: 300px; /* Width of the card */
-        }
-        .card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: .25rem; /* Slightly round corners of images */
-            margin-bottom: 15px;
-        }
-        
-        .card h3 {
-            margin: 0;
-            color: #333;
-        }
-        .card p {
-            color: #666;
-        }
-        .price {
-            color: #000;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .clickable-card {
-                    cursor: pointer;
-                    text-decoration: none; /* Removes underline from links */
-                }
-        .clickable-card:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Optional: Adds a larger shadow on hover for visual feedback */
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    @model IQueryable<Product>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (Product p in Model)
-        {
-            <div class="col mb-4">
-                <a class="clickable-card" href="@Url.Action("ProductDetails", "Home", new { id = p.ProductId })">
-                    <div class="card h-100">
-                        <img src="@p.ImgLink" class="card-img-top" alt="@p.Name" />
-                        <div class="card-body">
-                            <h3 class="card-title">@p.Name</h3>
-                            <p class="card-text price">$@p.Price</p>
-                            <p class="card-text">Product details go here, such as color, dimensions, it's so fun.</p>
-                        </div>
-                    </div>
-                </a>
+@model IQueryable<Product>
+<h1>All products</h1>
+<p>We have a large collection of amazing legos with personalized recommendations for every customer.</p>
+<partial name="_CookieConsentPartial" />
+<div class="row">
+    @foreach (Product p in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center d-flex flex-column justify-content-center">
+                    <img src="@p.ImgLink" alt="@p.Name" class="card-img-top" style="width:100%; height:auto; margin-bottom: 10px">
+                    <h4 class="card-title">@p.Name</h4>
+                    <h5 class="card-price" style="font-weight: bold">$@p.Price</h5>
+                </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
-</body>
-</html>
