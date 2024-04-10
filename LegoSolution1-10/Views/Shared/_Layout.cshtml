@@ -33,9 +33,10 @@
     @*         </div> *@
     @*     </div> *@
     @* </nav> *@
-    <nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark" style="background-color: #d9e3f1;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #d9e3f1; margin-bottom: 30px; padding-bottom: 15px; padding-top: 15px; padding-left: 20px; padding-right: 20px">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LegoSolution1_10</a>
+            <img src="~/Images/aurorabrick.svg" alt="Icon" style="height: 20px; padding-right: 4px">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Aurora<span style="font-weight: 900;">Bricks</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,16 +46,20 @@
                         <a class="nav-link inactive" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link inactive" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link inactive" asp-area="" asp-controller="Home" asp-action="AboutUs">About us</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link inactive" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Edit Products</a>
+                            <a class="dropdown-item" href="#">Users</a>
+                            <a class="dropdown-item" href="#">Review fraudulent orders</a>
                         </div>
                     </li>
                 </ul>
@@ -71,9 +76,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted text-center" style="margin-bottom: 30px; margin-top: 30px;">
         <div class="container">
-            &copy; 2024 - LegoSolution1_10 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - AuroraBricks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
