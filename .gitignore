@@ -3,3 +3,6 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+# Friends don't let friends commit secrets!!!
+**/secrets.json
+**/secret*

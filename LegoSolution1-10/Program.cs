@@ -9,10 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
+// Add the secrets.json file.
+builder.Configuration.AddJsonFile("secrets.json",
+    optional: false,
+    reloadOnChange: true);
 services.AddAuthentication().AddGoogle(googleOptions =>
+
 {
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = configuration.GetSection("Authentication:Google:ClientId").Value;
+    googleOptions.ClientSecret = configuration.GetSection("Authentication:Google:ClientSecret").Value;
 });
 
 // Add services to the container.
@@ -27,10 +32,6 @@ builder.Services.AddDbContext<LegoDatabaseContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings=legoConnection"]);
 });
 
-// Add the secrets.json file.
-// builder.Configuration.AddJsonFile("secrets.json",
-//     optional: false,
-//     reloadOnChange: true);
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
