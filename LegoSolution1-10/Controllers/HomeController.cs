@@ -33,16 +33,29 @@ public class HomeController : Controller
         return View();
     }
 
+    // public IActionResult Products()
+    // {
+    //     var productData = _repo.Products;
+    //     return View(productData);
+    // }
+    
     public IActionResult Products()
     {
-        var productData = _repo.Products;
-        return View(productData);
+        var productData = _repo.Products.OrderBy(p => p.Name);
+        return View("Products", productData); // The view name "Products" is specified here
     }
 
-    public IActionResult ProductDetails()
+
+    public IActionResult ProductDetails(string id)
     {
-        return View();
+        var product = _repo.Products.FirstOrDefault(p => p.ProductId == id);
+        if (product == null)
+        {
+            return NotFound(); // If no product is found, return the NotFound view
+        }
+        return View("ProductDetails", product); // The view name "ProductDetails" is specified here
     }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
