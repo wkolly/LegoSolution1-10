@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LegoSolution1_10.Models;
+using LegoSolution1_10.Models.ViewModels;
 
 namespace LegoSolution1_10.Controllers;
 
@@ -33,11 +34,27 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Products()
+    public IActionResult Products(int pageNum)
     {
-        var productData = _repo.Products;
-        return View(productData);
+        int pageSize = 5;
+        var blah = new ProductsListViewModel
+        {
+            Products = _repo.Products
+                .OrderBy(x => x.Name)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ItemsPerPage = pageSize,
+                TotalItems = _repo.Products.Count()
+            }
+            
+        };
+        return View(blah);
     }
+    
 
     public IActionResult ProductDetails()
     {
