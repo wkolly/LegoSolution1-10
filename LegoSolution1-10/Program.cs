@@ -2,8 +2,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LegoSolution1_10.Data;
 using LegoSolution1_10.Models;
+using Microsoft.Data.SqlClient;
+
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+});
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -11,10 +21,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
 builder.Services.AddDbContext<LegoDatabaseContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings=legoConnection"]);
 });
+
+// Add the secrets.json file.
+// builder.Configuration.AddJsonFile("secrets.json",
+//     optional: false,
+//     reloadOnChange: true);
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
