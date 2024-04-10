@@ -35,7 +35,8 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>() // Make sure to add roles support
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -75,6 +76,8 @@ app.Use (async (ctx, next) =>
 
     await next.Invoke();
 });
+
+app.UseAuthentication(); // Make sure to call UseAuthentication before UseAuthorization.
 app.UseAuthorization();
 
 app.MapControllerRoute("pagination", "Products/{pageNum}", new { Controller = "Home", action = "Products"});

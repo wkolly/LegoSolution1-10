@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LegoSolution1_10.Models;
+using Microsoft.AspNetCore.Authorization;
 using LegoSolution1_10.Models.ViewModels;
 
 namespace LegoSolution1_10.Controllers;
@@ -33,7 +34,7 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    [Authorize(Roles="Admin")]
     public IActionResult Products(int pageNum, int? pageSize)
     {
         pageSize ??= 5; // Default to 5 if no value is provided
