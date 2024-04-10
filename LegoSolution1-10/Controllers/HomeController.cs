@@ -34,27 +34,33 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Products(int pageNum)
+    public IActionResult Products(int pageNum, int? pageSize)
     {
-        int pageSize = 5;
+        pageSize ??= 5; // Default to 5 if no value is provided
+        var pageSizeOptions = new List<int> { 5, 10, 15 }; // The available page size options
+
         var blah = new ProductsListViewModel
         {
             Products = _repo.Products
                 .OrderBy(x => x.Name)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                .Skip((pageNum - 1) * pageSize.Value)
+                .Take(pageSize.Value),
 
             PaginationInfo = new PaginationInfo
             {
                 CurrentPage = pageNum,
-                ItemsPerPage = pageSize,
+                ItemsPerPage = pageSize.Value,
                 TotalItems = _repo.Products.Count()
-            }
-            
+            },
+
+            PageSizeOptions = pageSizeOptions
         };
+
         return View(blah);
     }
+
     
+
 
     public IActionResult ProductDetails(string id)
     {
