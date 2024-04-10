@@ -6,17 +6,6 @@
 <h1>Welcome to Our Lego Store</h1>
 <p>We have a large collection of amazing legos with personalized recommendations for every customer.</p>
 <partial name="_CookieConsentPartial" />
-
-
-    @foreach (Product p in Model)
-    {
-        <ul>
-            <li><img src="@p.ImgLink" alt="@p.Name" style="width:100px; height:auto;"></li>
-            <li>@p.Name</li>
-            <li>$@p.Price</li>
-        </ul>
-    }
-    
     <div class="row">
         @foreach (Product p in Model)
         {
