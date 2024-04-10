@@ -2,12 +2,12 @@
     ViewData["Title"] = "Products";
 }
 
-@model IQueryable<Product>
+@model ProductsListViewModel
 <h1>All products</h1>
 <p>We have a large collection of amazing legos with personalized recommendations for every customer.</p>
 <partial name="_CookieConsentPartial" />
 <div class="row">
-    @foreach (Product p in Model)
+    @foreach (Product p in Model.Products)
     {
         <div class="col-md-4 mb-4">
             <div class="card h-100">
@@ -20,3 +20,4 @@
         </div>
     }
 </div>
+<div class="pagination pagination-lg" class="page-item disabled" page-model="@Model.PaginationInfo" page-action="Products"></div>
