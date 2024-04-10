@@ -14,3 +14,20 @@
             <li>$@p.Price</li>
         </ul>
     }
+    
+    <div class="row">
+        @foreach (Product p in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <li><img src="@p.ImgLink" alt="@p.Name" style="width:100px; height:auto;"></li>
+                        <h3 class="card-title">@p.Name</h3>
+                        <ul class="list-unstyled">
+                            <li>Price: @p.Price</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
